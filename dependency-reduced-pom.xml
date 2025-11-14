@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.cloudsimplus</groupId>
+  <artifactId>cloudsimplus-examples</artifactId>
+  <name>CloudSim Plus Examples</name>
+  <version>8.5.7</version>
+  <description>Ready-to-run examples of how to use CloudSim Plus API.
+        It is an excellent start point to learn how to implement cloud computing
+        simulations using CloudSim Plus.
+        All examples of CloudSim Plus exclusive features are inside the org.cloudsimplus.examples package.
+        Each Java class with a main method is a different example.</description>
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/cloudsimplus/cloudsimplus-examples/issues</url>
+  </issueManagement>
+  <inceptionYear>2015</inceptionYear>
+  <developers>
+    <developer>
+      <name>Manoel Campos da Silva Filho</name>
+      <email>manoelcampos@gmail.com</email>
+      <organization>Instituto Federal de Educação Ciência e Tecnologia do Tocantins (IFTO)</organization>
+      <organizationUrl>http://www.ifto.edu.br</organizationUrl>
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>GPLv3</name>
+      <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:git:git@github.com:cloudsimplus/cloudsimplus-examples.git</connection>
+    <developerConnection>scm:git:git@github.com:cloudsimplus/cloudsimplus-examples.git</developerConnection>
+    <url>git@github.com:cloudsimplus/cloudsimplus-examples.git</url>
+  </scm>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.14.0</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathLayoutType>repository</classpathLayoutType>
+              <classpathPrefix>${user.home}/.m2/repository/</classpathPrefix>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.6.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <shadedArtifactAttached>true</shadedArtifactAttached>
+          <shadedClassifierName>with-dependencies</shadedClassifierName>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>${license-maven-plugin.version}</version>
+        <configuration>
+          <header>${copyrightfile}</header>
+          <mapping>
+            <java>SLASHSTAR_STYLE</java>
+          </mapping>
+          <strictCheck>true</strictCheck>
+          <failIfMissing>false</failIfMissing>
+          <excludes>
+            <exclude>**/src/main/resources/**</exclude>
+            <exclude>**/src/main/java/org/cloudbus/**</exclude>
+            <exclude>**/*.md</exclude>
+            <exclude>**/*.xml</exclude>
+            <exclude>**/*.brite</exclude>
+            <exclude>**/package-info.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <properties>
+    <maven.compiler.release>23</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <license-maven-plugin.version>5.0.0</license-maven-plugin.version>
+    <copyrightfile>../COPYRIGHT</copyrightfile>
+    <logback.version>1.5.18</logback.version>
+  </properties>
+</project>
